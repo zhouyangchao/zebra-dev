@@ -18,6 +18,9 @@
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330, 
  * Boston, MA 02111-1307, USA.  
  */
+ 
+#define IPV6_PKTINFO 19
+#define IPV6_HOPLIMIT 8
 
 #include <zebra.h>
 
