@@ -330,6 +330,13 @@ struct fifo
   struct fifo *prev;
 };
 
+//struct in6_addr {};
+
+struct in6_pktinfo {
+  u_int ipi6_ifindex;
+  struct in6_addr ipi6_addr;
+};
+
 #define FIFO_INIT(F)                                  \
   do {                                                \
     struct fifo *Xfifo = (struct fifo *)(F);          \

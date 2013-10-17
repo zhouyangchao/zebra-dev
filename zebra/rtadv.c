@@ -120,6 +120,7 @@ rtadv_recv_packet (int sock, u_char *buf, int buflen,
       if (cmsgptr->cmsg_level == IPPROTO_IPV6 &&
 	  cmsgptr->cmsg_type == IPV6_PKTINFO) 
 	{
+
 	  struct in6_pktinfo *ptr;
 	  
 	  ptr = (struct in6_pktinfo *) CMSG_DATA (cmsgptr);
