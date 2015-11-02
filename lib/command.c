@@ -416,6 +416,37 @@ install_element (enum node_type ntype, struct cmd_element *cmd)
   cmd->cmdsize = cmd_cmdsize (cmd->strvec);
 }
 
+/* Uninstall a command into a node. */
+void
+uninstall_element (enum node_type ntype, struct cmd_element *cmd)
+{
+  struct cmd_node *cnode;
+  vector v;
+  unsigned int active, i;
+
+  cnode = vector_slot (cmdvec, ntype);
+
+  if (cnode == NULL) 
+    {
+      fprintf (stderr, "Command node %d doesn't exist, please check it\n",
+           ntype);
+      exit (1);
+    }
+
+  v = cnode->cmd_vector;
+  active = v->active;
+  for (i = 0; i < active; ++i)
+    {
+      if(v->index[i] == cmd)
+	    {
+	      vector_unset(v, i);
+		  vector_free(cmd->strvec);
+		  cmd->strvec = NULL;
+		  break;
+	    }
+    }
+}
+
 static unsigned char itoa64[] =	
 "./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 

@@ -280,6 +280,7 @@ struct desc
 void install_node (struct cmd_node *, int (*) (struct vty *));
 void install_default (enum node_type);
 void install_element (enum node_type, struct cmd_element *);
+void uninstall_element (enum node_type, struct cmd_element *);
 void sort_node ();
 
 char *argv_concat (char **, int, int);
