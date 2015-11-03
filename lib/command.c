@@ -159,6 +159,30 @@ sort_node ()
       }
 }
 
+/* Sort special node's command element according to command string. */
+void
+sort_special_node (enum node_type type)
+{
+  int i;
+  struct cmd_node *cnode;
+  vector descvec;
+  struct cmd_element *cmd_element;
+
+  if ((cnode = vector_slot (cmdvec, type)) != NULL)
+    {
+      vector cmd_vector = cnode->cmd_vector;
+      qsort (cmd_vector->index, cmd_vector->max, sizeof (void *), cmp_node);
+
+      for (i = 0; i < vector_max (cmd_vector); i++)
+	    if ((cmd_element = vector_slot (cmd_vector, i)) != NULL)
+	      {
+	        descvec = vector_slot (cmd_element->strvec,
+			  	     vector_max (cmd_element->strvec) - 1);
+	        qsort (descvec->index, descvec->max, sizeof (void *), cmp_desc);
+	      }
+    }
+}
+
 /* Breaking up string into each command piece. I assume given
    character is separated by a space character. Return value is a
    vector which includes char ** data element. */

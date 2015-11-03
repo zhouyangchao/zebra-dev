@@ -282,6 +282,7 @@ void install_default (enum node_type);
 void install_element (enum node_type, struct cmd_element *);
 void uninstall_element (enum node_type, struct cmd_element *);
 void sort_node ();
+void sort_special_node (enum node_type type);
 
 char *argv_concat (char **, int, int);
 vector cmd_make_strvec (char *);
